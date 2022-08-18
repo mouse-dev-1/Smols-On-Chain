@@ -31,7 +31,7 @@ contract SmolsRenderer is Ownable {
         Smol memory _smolState = ISmolsState(smolsStateAddress).getSmol(
             _tokenId
         );
-        Smol memory _returnSmol = _smolInitialState;       
+        Smol memory _returnSmol = _smolInitialState;
 
         if (_smolState.background > 0)
             _returnSmol.background = _smolState.background;
@@ -49,7 +49,8 @@ contract SmolsRenderer is Ownable {
         string memory _collectionDescription,
         string memory _namePrefix
     ) public onlyOwner {
-        if (bytes(_collectionDescription).length > 0) collectionDescription = _collectionDescription;
+        if (bytes(_collectionDescription).length > 0)
+            collectionDescription = _collectionDescription;
         if (bytes(_namePrefix).length > 0) namePrefix = _namePrefix;
     }
 
@@ -73,61 +74,48 @@ contract SmolsRenderer is Ownable {
     {
         return
             abi.encodePacked(
-                '<image x="0" y="0" width="350" height="350" image-rendering="pixelated" preserveAspectRatio="xMidYMid" xlink:href="',
+                '<image xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="350" height="350" image-rendering="pixelated" preserveAspectRatio="xMidYMid" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="',
                 pngImage,
                 '" />'
             );
     }
 
+    function generatePNGFromTraitId(uint256 _traitId, uint256 _dependencyLevel)
+        internal
+        view
+        returns (bytes memory)
+    {
+        return
+            generatePNGForSVG(
+                ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
+                    _traitId,
+                    _dependencyLevel
+                )
+            );
+    }
+
     function generateSVG(Smol memory _smol) public view returns (bytes memory) {
-
-
+        if (_smol.skin > 0) {
+            return
+                abi.encodePacked(
+                    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 350 350">',
+                    generatePNGFromTraitId(_smol.background, 0),
+                    generatePNGFromTraitId(_smol.body, 0),
+                    generatePNGFromTraitId(_smol.glasses, 0),
+                    generatePNGFromTraitId(_smol.skin, 0),
+                    "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
+                );
+        }
         return
             abi.encodePacked(
-                '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smoll" width="100%" height="100%" version="1.1" viewBox="0 0 350 350">',
-                //Load the background
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.background,
-                        0
-                    )
-                ),
-                //Load the Body
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.body,
-                        _smol.iq
-                    )
-                ),
-                //Load the Clothes
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.clothes,
-                        0
-                    )
-                ),
-                //Load the Glasses
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.glasses,
-                        0
-                    )
-                ),
-                //Load the Hat
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.hat,
-                        _smol.iq
-                    )
-                ),
-                //Load the Mouth
-                generatePNGForSVG(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                        _smol.mouth,
-                        0
-                    )
-                ),
-                "</svg>"
+                '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 350 350">',
+                generatePNGFromTraitId(_smol.background, 0),
+                generatePNGFromTraitId(_smol.body, _smol.headSize),
+                generatePNGFromTraitId(_smol.clothes, 0),
+                generatePNGFromTraitId(_smol.glasses, 0),
+                generatePNGFromTraitId(_smol.hat, _smol.headSize),
+                generatePNGFromTraitId(_smol.mouth, 0),
+                "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
             );
     }
 
@@ -169,11 +157,11 @@ contract SmolsRenderer is Ownable {
                 generateMetadataString(
                     ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
                         _smol.body,
-                        _smol.iq
+                        _smol.headSize
                     ),
                     ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
                         _smol.body,
-                        _smol.iq
+                        _smol.headSize
                     )
                 ),
                 ",",
@@ -205,11 +193,11 @@ contract SmolsRenderer is Ownable {
                 generateMetadataString(
                     ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
                         _smol.hat,
-                        _smol.iq
+                        _smol.headSize
                     ),
                     ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
                         _smol.hat,
-                        _smol.iq
+                        _smol.headSize
                     )
                 ),
                 ",",

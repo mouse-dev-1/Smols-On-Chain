@@ -22,12 +22,15 @@ module.exports = {
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`,
-      accounts: [process.env.RINKEBY_PRIVATE_KEY]
+      accounts: [process.env.RINKEBY_PRIVATE_KEY],
     },
   },
   etherscan: {
     apiKey: {
       rinkeby: process.env.ETHERSCAN_API_KEY,
     },
+  },
+  mocha: {
+    timeout: 100000000,
   },
 };

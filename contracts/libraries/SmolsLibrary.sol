@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 struct Trait {
+    uint8 gender;
     uint16 traitId;
     bytes traitName;
     bytes traitType;
@@ -12,15 +13,15 @@ struct Smol {
     uint32 background;
     uint32 body;
     uint32 clothes;
+    uint32 mouth;
     uint32 glasses;
     uint32 hat;
-    uint32 mouth;
     uint32 skin;
-    uint8 iq;
+    uint8 gender;
     //0 - Unset
     //1 - Male
     //2 - Female
-    bool gender;
+    uint8 headSize;
 }
 
 

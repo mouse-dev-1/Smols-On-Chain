@@ -15,9 +15,12 @@ import "./interfaces/ISmolsRenderer.sol";
 import "./libraries/SmolsLibrary.sol";
 
 contract Smols is ERC721, Ownable {
-    address smolsRendererAddress;
+    mapping(address => bool) public privilegedMinters;
 
-    constructor() ERC721("Smol", "SMOL") {}
+    address smolsRendererAddress;
+    uint256 public totalSupply;
+
+    constructor() ERC721("Smols", "SMOLS") {}
 
     function setSmolsRendererAddress(address _smolsRendererAddress)
         public
@@ -36,7 +39,16 @@ contract Smols is ERC721, Ownable {
         return ISmolsRenderer(smolsRendererAddress).tokenURI(tokenId);
     }
 
-    function mint(uint256 _tokenId) public {
-        _mint(msg.sender, _tokenId);
+    function setPrivilegedMinter(address _minter, bool _privileged)
+        public
+        onlyOwner
+    {
+        privilegedMinters[_minter] = _privileged;
+    }
+
+    function privilegedMint(address _to, uint256 _tokenId) public {
+        require(privilegedMinters[msg.sender], "Not a privileged minter!");
+        _mint(_to, _tokenId);
+        totalSupply++;
     }
 }
