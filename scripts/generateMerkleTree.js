@@ -10,14 +10,14 @@ module.exports.generateMerkleTree = (smols) => {
       ethers.utils.solidityPack(
         [
           "uint256",
-          "uint32",
-          "uint32",
-          "uint32",
-          "uint32",
-          "uint32",
-          "uint32",
-          "uint8",
-          "uint8",
+          "uint16",
+          "uint16",
+          "uint16",
+          "uint16",
+          "uint16",
+          "uint16",
+          "uint16",
+          "uint8"
         ],
         [
           smol.tokenId,
@@ -27,8 +27,8 @@ module.exports.generateMerkleTree = (smols) => {
           smol.mouth,
           smol.glasses,
           smol.hat,
-          smol.gender,
-          smol.headSize
+          smol.hair,
+          smol.gender
         ]
       )
     );

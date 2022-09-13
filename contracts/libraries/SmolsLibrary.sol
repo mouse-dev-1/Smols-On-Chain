@@ -10,13 +10,14 @@ struct Trait {
 }
 
 struct Smol {
-    uint32 background;
-    uint32 body;
-    uint32 clothes;
-    uint32 mouth;
-    uint32 glasses;
-    uint32 hat;
-    uint32 skin;
+    uint16 background;
+    uint16 body;
+    uint16 clothes;
+    uint16 mouth;
+    uint16 glasses;
+    uint16 hat;
+    uint16 hair;
+    uint16 skin;
     uint8 gender;
     //0 - Unset
     //1 - Male

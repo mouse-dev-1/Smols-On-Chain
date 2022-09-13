@@ -27,14 +27,14 @@ contract SmolsExchanger is Ownable {
 
     function onChainMySmolPlease(
         uint256 _smolId,
-        uint32 background,
-        uint32 body,
-        uint32 clothes,
-        uint32 mouth,
-        uint32 glasses,
-        uint32 hat,
+        uint16 background,
+        uint16 body,
+        uint16 clothes,
+        uint16 mouth,
+        uint16 glasses,
+        uint16 hat,
+        uint16 hair,
         uint8 gender,
-        uint8 headSize,
         bytes32[] memory proof
     ) public {
         require(IERC721(oldSmolsAddress).ownerOf(_smolId) == msg.sender, "You; don't own this token!");
@@ -55,8 +55,8 @@ contract SmolsExchanger is Ownable {
                         mouth,
                         glasses,
                         hat,
-                        gender,
-                        headSize
+                        hair,
+                        gender
                     )
                 )
             ),
@@ -77,9 +77,10 @@ contract SmolsExchanger is Ownable {
             mouth,
             glasses,
             hat,
+            hair,
             0,
             gender,
-            headSize
+            0
         ));
     }
 

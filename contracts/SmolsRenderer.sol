@@ -39,6 +39,7 @@ contract SmolsRenderer is Ownable {
         if (_smolState.clothes > 0) _returnSmol.clothes = _smolState.clothes;
         if (_smolState.glasses > 0) _returnSmol.glasses = _smolState.glasses;
         if (_smolState.hat > 0) _returnSmol.hat = _smolState.hat;
+        if (_smolState.hair > 0) _returnSmol.hair = _smolState.hair;
         if (_smolState.mouth > 0) _returnSmol.mouth = _smolState.mouth;
         if (_smolState.skin > 0) _returnSmol.skin = _smolState.skin;
 
@@ -103,6 +104,7 @@ contract SmolsRenderer is Ownable {
                     generatePNGFromTraitId(_smol.body, 0),
                     generatePNGFromTraitId(_smol.glasses, 0),
                     generatePNGFromTraitId(_smol.skin, 0),
+                    generatePNGFromTraitId(_smol.hair, 0),
                     "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
                 );
         }
@@ -114,6 +116,7 @@ contract SmolsRenderer is Ownable {
                 generatePNGFromTraitId(_smol.clothes, 0),
                 generatePNGFromTraitId(_smol.glasses, 0),
                 generatePNGFromTraitId(_smol.hat, _smol.headSize),
+                generatePNGFromTraitId(_smol.hair, _smol.headSize),
                 generatePNGFromTraitId(_smol.mouth, 0),
                 "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
             );
@@ -133,6 +136,24 @@ contract SmolsRenderer is Ownable {
             );
     }
 
+    function generateMetadataStringForTrait(uint256 _traitId, uint8 _headSize)
+        public
+        view
+        returns (bytes memory)
+    {
+        return
+            generateMetadataString(
+                ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
+                    _traitId,
+                    _headSize
+                ),
+                ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
+                    _traitId,
+                    _headSize
+                )
+            );
+    }
+
     function generateMetadata(Smol memory _smol)
         public
         view
@@ -142,75 +163,30 @@ contract SmolsRenderer is Ownable {
             abi.encodePacked(
                 "[",
                 //Load the background
-                generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.background,
-                        0
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.background,
-                        0
-                    )
-                ),
+                generateMetadataStringForTrait(_smol.background, 0),
                 ",",
                 //Load the Body
-                generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.body,
-                        _smol.headSize
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.body,
-                        _smol.headSize
-                    )
-                ),
+                generateMetadataStringForTrait(_smol.body, _smol.headSize),
                 ",",
                 //Load the Clothes
-                generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.clothes,
-                        0
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.clothes,
-                        0
-                    )
-                ),
+                generateMetadataStringForTrait(_smol.clothes, 0),
                 ",",
                 //Load the Glasses
-                generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.glasses,
-                        0
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.glasses,
-                        0
-                    )
-                ),
+                generateMetadataStringForTrait(_smol.glasses, 0),
                 ",",
                 //Load the Hat
-                generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.hat,
-                        _smol.headSize
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.hat,
-                        _smol.headSize
-                    )
-                ),
+                generateMetadataStringForTrait(_smol.hat, _smol.headSize),
+                ",",
+                //Load the Hair
+                generateMetadataStringForTrait(_smol.hair, _smol.headSize),
                 ",",
                 //Load the Mouth
+                generateMetadataStringForTrait(_smol.mouth, 0),
+                ",",
+                //Load the Gender
                 generateMetadataString(
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitType(
-                        _smol.mouth,
-                        0
-                    ),
-                    ISmolsTraitStorage(smolsTraitStorageAddress).getTraitName(
-                        _smol.mouth,
-                        0
-                    )
+                    "Gender",
+                    _smol.gender == 1 ? bytes("male") : bytes("female")
                 ),
                 "]"
             );

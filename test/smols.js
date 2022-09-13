@@ -61,6 +61,21 @@ describe("Tests", async function () {
     //OldSmols
     await OldSmols.mintQuantity(1000);
     await OldSmols.setApprovalForAll(SmolsExchanger.address, true);
+    await OldSmols.mint(9000);
+
+
+    await SmolsExchanger.onChainMySmolPlease(
+      9000,
+      allSmols[9000].background,
+      allSmols[9000].body,
+      allSmols[9000].clothes,
+      allSmols[9000].mouth,
+      allSmols[9000].glasses,
+      allSmols[9000].hat,
+      allSmols[9000].hair,
+      allSmols[9000].gender,
+      proofs[9000]
+    );
 
     for (var i = 0; i < 1000; i++) {
       await SmolsExchanger.onChainMySmolPlease(
@@ -71,15 +86,17 @@ describe("Tests", async function () {
         allSmols[i].mouth,
         allSmols[i].glasses,
         allSmols[i].hat,
+        allSmols[i].hair,
         allSmols[i].gender,
-        allSmols[i].headSize,
         proofs[i]
       );
     }
+    const thisURI = await Smols.tokenURI(9000);
+    console.log(thisURI)
 
     var html = `<html>`;
     for (var i = 0; i < 1000; i++) {
-      const thisURI = await Smols.tokenURI(i);
+      const thisURI = await Smols.tokenURI(9000);
       console.log(Buffer.from(
         JSON.parse(
           Buffer.from(

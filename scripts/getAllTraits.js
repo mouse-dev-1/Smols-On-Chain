@@ -20,7 +20,7 @@ var traitId = 0;
   smols.forEach((smol) => {
     const thisSmol = smolBrains[smol];
 
-    ["Background", "Body", "Clothes", "Mouth", "Glasses", "Hat"].forEach(
+    ["Background", "Body", "Clothes", "Mouth", "Glasses", "Hat", "Hair"].forEach(
       (traitType) => {
         if (
           !traits.find(
@@ -46,7 +46,7 @@ var traitId = 0;
 
   traits = traits.map(({ traitType, traitName, gender }) => {
     console.log({ traitType, traitName, gender });
-    if (traitType == "Body" || traitType == "Hat") {
+    if (traitType == "Body" || traitType == "Hat"|| traitType == "Hair") {
       const iqImages = [0, 1, 2, 3, 4, 5].map((iq) => {
         const image = fs.readFileSync(
           path.join(
@@ -112,6 +112,7 @@ var traitId = 0;
       "Mouth",
       "Glasses",
       "Hat",
+      "Hair"
     ];
 
     traitTypes.forEach((traitType) => {
