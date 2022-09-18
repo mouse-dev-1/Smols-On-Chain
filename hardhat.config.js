@@ -9,7 +9,7 @@ module.exports = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 100000,
       },
     },
   },
@@ -17,7 +17,7 @@ module.exports = {
     hardhat: {
       blockGasLimit: 29000000,
       accounts: {
-        count: 1,
+        count: 100,
       },
     },
     rinkeby: {
