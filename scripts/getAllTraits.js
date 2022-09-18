@@ -51,7 +51,7 @@ var traitId = 0;
         const image = fs.readFileSync(
           path.join(
             __dirname,
-            `../data/36x36/${gender}/`,
+            `../data/newart/${gender}/`,
             `${traitType}/${traitName}/${iq.toString()}.png`
           )
         );
@@ -74,7 +74,7 @@ var traitId = 0;
       const image = fs.readFileSync(
         path.join(
           __dirname,
-          `../data/36x36/${gender}/`,
+          `../data/newart/${gender}/`,
           `${traitType}/${traitName}.png`
         )
       );

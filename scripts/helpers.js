@@ -56,6 +56,6 @@ module.exports.uploadTraits = async (allTraits, SmolsTraitStorage) => {
       traitGroupings._traits
     );
 
-    //await Promise.delay(3500);
+    await Promise.delay(3500);
   });
 };

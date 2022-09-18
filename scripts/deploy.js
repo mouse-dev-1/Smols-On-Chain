@@ -1,127 +1,63 @@
 const { ethers, waffle } = require("hardhat");
+const { expect } = require("chai");
+const Promise = require("bluebird");
 const allTraits = require("../data/traits.json");
 const allSmols = require("../data/smolsToTraitId.json");
-const Promise = require("bluebird");
+const { unpack, uploadTraits } = require("../scripts/helpers");
+const { generateMerkleTree } = require("../scripts/generateMerkleTree");
+const fs = require("fs");
+const path = require("path");
 
-function sliceIntoChunks(arr, chunkSize) {
-  const res = [];
-  for (let i = 0; i < arr.length; i += chunkSize) {
-    const chunk = arr.slice(i, i + chunkSize);
-    res.push(chunk);
-  }
-  return res;
-}
+var proofs;
+var root;
 
-function unpack(str) {
-  var bytes = [];
-  for (var i = 0; i < str.length; i++) {
-    var char = str.charCodeAt(i);
-    bytes.push(char & 0xff);
-  }
-  return ethers.utils.hexlify(bytes);
-}
-
-const uploadSmols = async (SmolsInitialState) => {
-  const chunks = sliceIntoChunks(allSmols, 100);
-  var runningTotal = 0;
-
-  await Promise.each(chunks, async (chunk) => {
-    const tokenIds = chunk.map((a) => a.tokenId);
-    const smolsToUpload = chunk.map((a) => {
-      delete a.tokenId;
-      return a;
-    });
-
-    await SmolsInitialState.setSmols(tokenIds, smolsToUpload);
-    runningTotal = runningTotal + smolsToUpload.length;
-    console.log(
-      `Uploaded ${tokenIds.length} more smols. ${runningTotal} total.`
-    );
-    await Promise.delay(3500);
-  });
-};
-
-const uploadTraits = async (SmolsTraitStorage) => {
-  const chunks = sliceIntoChunks(allTraits, 6);
-
-  await Promise.each(chunks, async (chunk) => {
-    const traitGroupings = {
-      _traitIds: [],
-      _dependencyLevels: [],
-      _traits: [],
-    };
-    chunk.forEach((traitGroup) => {
-      traitGroup.traits.forEach((trait, index) => {
-
-        traitGroupings._traitIds.push(traitGroup.traitId);
-        traitGroupings._dependencyLevels.push(index);
-        traitGroupings._traits.push({
-          gender: trait.gender,
-          traitId: traitGroup.traitId,
-          traitName: unpack(trait.traitName),
-          traitType: unpack(trait.traitType),
-          pngImage: unpack(trait.pngImage),
-        });
-      });
-    });
-
-    console.log("Uploading trait grouping");
-
-    await SmolsTraitStorage.setTraits(
-      traitGroupings._traitIds,
-      traitGroupings._dependencyLevels,
-      traitGroupings._traits
-    );
-
-    await Promise.delay(3500);
-  });
-
-  /*
-  await Promise.each(allTraits, async (traits) => {
-    await Promise.each(traits.traits, async (trait, index) => {
-      await SmolsTraitStorage.setTrait(traits.traitId, index, {
-        gender: trait.gender,
-        traitId: traits.traitId,
-        traitName: unpack(trait.traitName),
-        traitType: unpack(trait.traitType),
-        pngImage: unpack(trait.pngImage),
-      });
-      console.log(`Uploaded trait ${traits.traitId}`);
-      await Promise.delay(3500);
-    });
-  });
-  */
-};
+const deployContract = async (name) =>
+  (await ethers.getContractFactory(name)).deploy();
 
 async function main() {
-  const [owner] = await ethers.getSigners();
+  OldSmols = await deployContract("OldSmols");
+  Smols = await deployContract("Smols");
+  SmolsExchanger = await deployContract("SmolsExchanger");
+  SmolsInitialState = await deployContract("SmolsInitialState");
+  SmolsRenderer = await deployContract("SmolsRenderer");
+  SmolsState = await deployContract("SmolsState");
+  SmolsTraitStorage = await deployContract("SmolsTraitStorage");
 
-  Smols = await (await ethers.getContractFactory("Smols")).deploy();
-  await Promise.delay(3500);
-  SmolsInitialState = await (
-    await ethers.getContractFactory("SmolsInitialState")
-  ).deploy();
-  await Promise.delay(3500);
-  SmolsRenderer = await (
-    await ethers.getContractFactory("SmolsRenderer")
-  ).deploy();
-  await Promise.delay(3500);
-  SmolsState = await (await ethers.getContractFactory("SmolsState")).deploy();
-  SmolsTraitStorage = await (
-    await ethers.getContractFactory("SmolsTraitStorage")
-  ).deploy();
-  await Promise.delay(3500);
+  School = await deployContract("School");
+  TransferBlocker = await deployContract("TransferBlocker");
+
+  await Smols.setTransferBlockerAddress(TransferBlocker.address);
+  await TransferBlocker.setSchoolAddress(School.address);
+
+  //Create IQ Stat
+  await School.setStatDetails(Smols.address, 0, {
+    globalStatAccrued: 0,
+    emissionRate: iqEmissionRate,
+    exists: 1,
+    joinable: 1,
+  });
+
+  merkleData = generateMerkleTree(allSmols);
+
+  merkleTree = merkleData.merkleTree;
+  proofs = merkleData.proofs;
+  root = merkleData.root;
 
   //Smols
   await Smols.setSmolsRendererAddress(SmolsRenderer.address);
+  await Smols.setPrivilegedMinter(SmolsExchanger.address, true);
 
-  await Promise.delay(3500);
+  //Smols Exchanger
+  await SmolsExchanger.setAddresses(
+    SmolsInitialState.address,
+    OldSmols.address,
+    Smols.address
+  );
+
+  await SmolsExchanger.setMerkleRoot(root);
 
   //Smols Initial State
-  await SmolsInitialState.setAllowedSetter(Smols.address, true);
-  await Promise.delay(3500);
-  await SmolsInitialState.setAllowedSetter(owner.address, true);
-  await Promise.delay(3500);
+  await SmolsInitialState.setAllowedSetter(SmolsExchanger.address, true);
 
   //Smols Renderer
   await SmolsRenderer.setAddresses(
@@ -129,27 +65,16 @@ async function main() {
     SmolsInitialState.address,
     SmolsTraitStorage.address
   );
-  await Promise.delay(3500);
-
-  //Smols State
-  await SmolsState.setAllowedSetter(Smols.address, true);
-  await Promise.delay(3500);
 
   //Smols Trait Storage
-  await uploadTraits(SmolsTraitStorage);
-
-  //Upload smols
-  await uploadSmols(SmolsInitialState);
-
-  //const tokenURI = await Smols.tokenURI(23);
-  //console.log(tokenURI);
-
-  //await Smols.mintQuantity(350000);
+  await uploadTraits(allTraits, SmolsTraitStorage);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 3500;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
