@@ -23,7 +23,9 @@ const getTimestamp = async () => {
 
 }
 
-const iqEmissionRate = 100000000;
+
+
+const iqEmissionRate = 115740740000000;
 
 before(async function () {
   signers = await ethers.getSigners();

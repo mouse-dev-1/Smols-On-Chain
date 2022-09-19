@@ -29,6 +29,7 @@ async function main() {
   await Smols.setTransferBlockerAddress(TransferBlocker.address);
   await TransferBlocker.setSchoolAddress(School.address);
 
+  const iqEmissionRate = 115740740000000;
   //Create IQ Stat
   await School.setStatDetails(Smols.address, 0, {
     globalStatAccrued: 0,
