@@ -68,30 +68,15 @@ contract SmolsRenderer is Ownable {
             smolsTraitStorageAddress = _smolsTraitStorageAddress;
     }
 
-    function generatePNGForSVG(bytes memory pngImage)
-        internal
-        pure
-        returns (bytes memory)
-    {
-        return
-            abi.encodePacked(
-                '<image xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="350" height="350" image-rendering="pixelated" preserveAspectRatio="xMidYMid" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="',
-                pngImage,
-                '" />'
-            );
-    }
-
     function generatePNGFromTraitId(uint256 _traitId, uint256 _dependencyLevel)
         internal
         view
         returns (bytes memory)
     {
         return
-            generatePNGForSVG(
-                ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
-                    _traitId,
-                    _dependencyLevel
-                )
+            ISmolsTraitStorage(smolsTraitStorageAddress).getTraitImage(
+                _traitId,
+                _dependencyLevel
             );
     }
 
@@ -99,26 +84,38 @@ contract SmolsRenderer is Ownable {
         if (_smol.skin > 0) {
             return
                 abi.encodePacked(
-                    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 350 350">',
-                    generatePNGFromTraitId(_smol.background, 0),
-                    generatePNGFromTraitId(_smol.body, 0),
-                    generatePNGFromTraitId(_smol.glasses, 0),
+                    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 360 360" ',
+                    'style="background-color: transparent;background-image:url(',
                     generatePNGFromTraitId(_smol.skin, 0),
-                    generatePNGFromTraitId(_smol.hair, 0),
-                    "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
+                    "),url(",
+                    generatePNGFromTraitId(_smol.body, 0),
+                    "),url(",
+                    generatePNGFromTraitId(_smol.background, 0),
+                    ')"',
+                    ">",
+                    "<style>#smol {background-repeat: no-repeat;background-size: contain;background-position: center;image-rendering: -webkit-optimize-contrast;-ms-interpolation-mode: nearest-neighbor;image-rendering: -moz-crisp-edges;image-rendering: pixelated;}</style></svg>"
                 );
         }
         return
             abi.encodePacked(
-                '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 350 350">',
-                generatePNGFromTraitId(_smol.background, 0),
-                generatePNGFromTraitId(_smol.body, _smol.headSize),
-                generatePNGFromTraitId(_smol.clothes, 0),
-                generatePNGFromTraitId(_smol.glasses, 0),
-                generatePNGFromTraitId(_smol.hat, _smol.headSize),
-                generatePNGFromTraitId(_smol.hair, _smol.headSize),
+                '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="smol" width="100%" height="100%" version="1.1" viewBox="0 0 360 360" ',
+                'style="background-color: transparent;background-image:url(',
                 generatePNGFromTraitId(_smol.mouth, 0),
-                "<style>#smol{shape-rendering: crispedges; image-rendering: -webkit-crisp-edges; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;}</style></svg>"
+                "),url(",
+                generatePNGFromTraitId(_smol.hair, _smol.headSize),
+                "),url(",
+                generatePNGFromTraitId(_smol.hat, _smol.headSize),
+                "),url(",
+                generatePNGFromTraitId(_smol.glasses, 0),
+                "),url(",
+                generatePNGFromTraitId(_smol.clothes, 0),
+                "),url(",
+                generatePNGFromTraitId(_smol.body, _smol.headSize),
+                "),url(",
+                generatePNGFromTraitId(_smol.background, 0),
+                ')"',
+                ">",
+                "<style>#smol {background-repeat: no-repeat;background-size: contain;background-position: center;image-rendering: -webkit-optimize-contrast;-ms-interpolation-mode: nearest-neighbor;image-rendering: -moz-crisp-edges;image-rendering: pixelated;}</style></svg>"
             );
     }
 

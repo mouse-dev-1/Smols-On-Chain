@@ -12,22 +12,37 @@ var proofs;
 var root;
 
 const deployContract = async (name) =>
-  (await ethers.getContractFactory(name)).deploy();
+  {
+    const contract = await(await ethers.getContractFactory(name)).deploy();
+    console.log(`Deployed: ${name} at ${contract.address}`);
+    return contract;
+  }
 
 async function main() {
   OldSmols = await deployContract("OldSmols");
+  await Promise.delay(3500);
   Smols = await deployContract("Smols");
+  await Promise.delay(3500);
   SmolsExchanger = await deployContract("SmolsExchanger");
+  await Promise.delay(3500);
   SmolsInitialState = await deployContract("SmolsInitialState");
+  await Promise.delay(3500);
   SmolsRenderer = await deployContract("SmolsRenderer");
+  await Promise.delay(3500);
   SmolsState = await deployContract("SmolsState");
+  await Promise.delay(3500);
   SmolsTraitStorage = await deployContract("SmolsTraitStorage");
+  await Promise.delay(3500);
 
   School = await deployContract("School");
+  await Promise.delay(3500);
   TransferBlocker = await deployContract("TransferBlocker");
+  await Promise.delay(3500);
 
   await Smols.setTransferBlockerAddress(TransferBlocker.address);
+  await Promise.delay(3500);
   await TransferBlocker.setSchoolAddress(School.address);
+  await Promise.delay(3500);
 
   const iqEmissionRate = 115740740000000;
   //Create IQ Stat
@@ -37,16 +52,14 @@ async function main() {
     exists: 1,
     joinable: 1,
   });
+  await Promise.delay(3500);
 
-  merkleData = generateMerkleTree(allSmols);
-
-  merkleTree = merkleData.merkleTree;
-  proofs = merkleData.proofs;
-  root = merkleData.root;
 
   //Smols
   await Smols.setSmolsRendererAddress(SmolsRenderer.address);
+  await Promise.delay(3500);
   await Smols.setPrivilegedMinter(SmolsExchanger.address, true);
+  await Promise.delay(3500);
 
   //Smols Exchanger
   await SmolsExchanger.setAddresses(
@@ -54,11 +67,20 @@ async function main() {
     OldSmols.address,
     Smols.address
   );
+  await Promise.delay(3500);
+
+  merkleData = generateMerkleTree(allSmols);
+
+  merkleTree = merkleData.merkleTree;
+  proofs = merkleData.proofs;
+  root = merkleData.root;
 
   await SmolsExchanger.setMerkleRoot(root);
+  await Promise.delay(3500);
 
   //Smols Initial State
   await SmolsInitialState.setAllowedSetter(SmolsExchanger.address, true);
+  await Promise.delay(3500);
 
   //Smols Renderer
   await SmolsRenderer.setAddresses(
@@ -66,6 +88,7 @@ async function main() {
     SmolsInitialState.address,
     SmolsTraitStorage.address
   );
+  await Promise.delay(3500);
 
   //Smols Trait Storage
   await uploadTraits(allTraits, SmolsTraitStorage);

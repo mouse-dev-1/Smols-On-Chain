@@ -46,6 +46,7 @@ before(async function () {
   await SmolsInitialState.setAllowedSetter(SmolsExchanger.address, true);
 
   //Smols Renderer
+  await SmolsRenderer.setCollectionData("Smols on chain!", "Smol");
   await SmolsRenderer.setAddresses(
     SmolsState.address,
     SmolsInitialState.address,
@@ -94,7 +95,7 @@ describe("Tests", async function () {
     const thisURI = await Smols.tokenURI(9000);
     console.log(thisURI)
 
-    var html = `<html>`;
+    /*var html = `<html>`;
     for (var i = 0; i < 1000; i++) {
       const thisURI = await Smols.tokenURI(9000);
       console.log(Buffer.from(
@@ -121,5 +122,6 @@ describe("Tests", async function () {
       path.join(__dirname, "../data/outputs/all.html"),
       `${html}<style>svg{height: 150;width: 150;}</style></html>`
     );
+  */
   });
 });

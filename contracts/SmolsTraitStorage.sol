@@ -70,7 +70,7 @@ contract SmolsTraitStorage is Ownable {
     }
 
     /*
-        Function to a single trait image, returns just two byte vars
+        Function to a single trait image
     */
 
     function getTraitImage(uint256 _traitId, uint256 _dependencyLevel)
@@ -80,4 +80,5 @@ contract SmolsTraitStorage is Ownable {
     {
         return traits[_traitId][_dependencyLevel].pngImage;
     }
+
 }

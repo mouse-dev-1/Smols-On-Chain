@@ -121,6 +121,6 @@ describe("Tests", async function () {
     expect(await School.totalStatsJoinedWithinCollection(Smols.address, 1)).to.equal(0);
 
     //Transfer this smol to user1
-    await School.transferFrom(ownerAddress, user1Address, 1);
+    await Smols.transferFrom(ownerAddress, user1Address, 1);
   });
 });

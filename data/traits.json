@@ -1319,8 +1319,8 @@
         "traits": [
             {
                 "gender": "female",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
-                "traitName": "none",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAFVBMVEX////y8OEAAAD41GclKzERFCbV08caCywYAAAAAXRSTlMAQObYZgAAAFBJREFUeF5jGAWjgIGBKQFDSC0NQ1GiYAK6kKCgGEgsTQGhTxAI0oAAIaQoKJYoKCgohhBiShRMSRQ2NhRJS0IIiaUkGhsbowq5JRoHB0OFAGKyDpEa6TsGAAAAAElFTkSuQmCC",
+                "traitName": "longsleeve",
                 "traitType": "Clothes"
             }
         ],
@@ -1329,7 +1329,7 @@
     {
         "traits": [
             {
-                "gender": "male",
+                "gender": "female",
                 "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Clothes"
@@ -1341,8 +1341,8 @@
         "traits": [
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAVFBMVEUAAACos+8FBwQLDwi9xvcLDQkEBAkXHhEZIBMqLkVLU15aYIVlboWlrNYGBw2yvPO2v/QHCgUXHhEAAAAMDhsiKRyos++bjU4VGjTS2f8NEAltYjNUgFumAAAAEnRSTlMAAAAAAAAAAAAAAAAAAAAAAACVcz0/AAAAf0lEQVR4Xu3NyQ7CMBCD4SZt2Vd7ZrL0/d+TlAoJiVDuKP/Bp09y9xe1Wq07Sf/DjARAblYRVRUivKwYv6Ao+6N7gm3ffyBCS4hRrCB3OuzACsILXV03mAKsvAHLX7KbG9KMfP0ta5yVs6QZYP0tq4Qw2dn0C0IxZYLIZEnxjh5DaguCl3WB5QAAAABJRU5ErkJggg==",
-                "traitName": "pirate",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
+                "traitName": "none",
                 "traitType": "Clothes"
             }
         ],
@@ -1352,8 +1352,8 @@
         "traits": [
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAQlBMVEUAAABKJgxkIgnJRBLecibsu5zWckSWMw3TWxz35N3/7+ngiU43HAlDFgYyEQTJRBIAAADeciYeFxRcGwP/7+np0McQNlsWAAAAD3RSTlMAAAAAAAAAAAAAAAAAAAAnp8O0AAAAZUlEQVR4Xu3MSQ6AIBAFUZkch98NeP+rqgSiiRD2hlq/VPePWq3WRoNSFSMIQEUJYuaaukxQo9YBKCk/Zk2IeTHTPJkeVBzd6vDeHwwqjgK8FADa8yMHjlkHUA7hQTaLokFSeKMT+lkJgIIKOgUAAAAASUVORK5CYII=",
-                "traitName": "prisoner",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAVFBMVEUAAACos+8FBwQLDwi9xvcLDQkEBAkXHhEZIBMqLkVLU15aYIVlboWlrNYGBw2yvPO2v/QHCgUXHhEAAAAMDhsiKRyos++bjU4VGjTS2f8NEAltYjNUgFumAAAAEnRSTlMAAAAAAAAAAAAAAAAAAAAAAACVcz0/AAAAf0lEQVR4Xu3NyQ7CMBCD4SZt2Vd7ZrL0/d+TlAoJiVDuKP/Bp09y9xe1Wq07Sf/DjARAblYRVRUivKwYv6Ao+6N7gm3ffyBCS4hRrCB3OuzACsILXV03mAKsvAHLX7KbG9KMfP0ta5yVs6QZYP0tq4Qw2dn0C0IxZYLIZEnxjh5DaguCl3WB5QAAAABJRU5ErkJggg==",
+                "traitName": "pirate",
                 "traitType": "Clothes"
             }
         ],
@@ -1362,9 +1362,9 @@
     {
         "traits": [
             {
-                "gender": "female",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAG1BMVEUAAAACAwgCBAsEBhAxMzkAAAAIDCHHz+f/++pKHEgeAAAABXRSTlMAAAAAAMJrBrEAAAAmSURBVChTY2AYBaOA5sBMAEiIoQiphoIAipBrRUdHRymKUDiSEADZ7wfRtM4ajgAAAABJRU5ErkJggg==",
-                "traitName": "strapless-dress",
+                "gender": "male",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAQlBMVEUAAABKJgxkIgnJRBLecibsu5zWckSWMw3TWxz35N3/7+ngiU43HAlDFgYyEQTJRBIAAADeciYeFxRcGwP/7+np0McQNlsWAAAAD3RSTlMAAAAAAAAAAAAAAAAAAAAnp8O0AAAAZUlEQVR4Xu3MSQ6AIBAFUZkch98NeP+rqgSiiRD2hlq/VPePWq3WRoNSFSMIQEUJYuaaukxQo9YBKCk/Zk2IeTHTPJkeVBzd6vDeHwwqjgK8FADa8yMHjlkHUA7hQTaLokFSeKMT+lkJgIIKOgUAAAAASUVORK5CYII=",
+                "traitName": "prisoner",
                 "traitType": "Clothes"
             }
         ],
@@ -1407,23 +1407,12 @@
         "traits": [
             {
                 "gender": "female",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAJ1BMVEUAAAAICw8RFx8SFx4VGyMcIy0fKDUkLjwlLjw4RloAAAAjLj44RlrF5hLsAAAACnRSTlMAAAAAAAAAAAAAc6AYaAAAAD9JREFUeF5jGGAwCqxWrTpzelcnstAa7z1nzpw5WbUAIRSavXv37jNnTiMJMWitWg0U2Q0UQgJSq4AAKDQMAQAjWhj2GGwE8QAAAABJRU5ErkJggg==",
-                "traitName": "band",
-                "traitType": "Glasses"
-            }
-        ],
-        "traitId": 55
-    },
-    {
-        "traits": [
-            {
-                "gender": "female",
                 "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAElBMVEUAAAA/eu6Bq/8saN5TjP+wyv+5LZWdAAAAA3RSTlMAAAD6dsTeAAAAHElEQVQYGWMYBUMFMAcxCAcwoAAWJwYRB4aRAgBHVgFTx1UtiAAAAABJRU5ErkJggg==",
                 "traitName": "blue-lenses",
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 56
+        "traitId": 55
     },
     {
         "traits": [
@@ -1434,7 +1423,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 57
+        "traitId": 56
     },
     {
         "traits": [
@@ -1445,7 +1434,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 58
+        "traitId": 57
     },
     {
         "traits": [
@@ -1456,7 +1445,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 59
+        "traitId": 58
     },
     {
         "traits": [
@@ -1467,7 +1456,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 60
+        "traitId": 59
     },
     {
         "traits": [
@@ -1478,7 +1467,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 61
+        "traitId": 60
     },
     {
         "traits": [
@@ -1489,7 +1478,7 @@
                 "traitType": "Glasses"
             }
         ],
-        "traitId": 62
+        "traitId": 61
     },
     {
         "traits": [
@@ -1497,6 +1486,17 @@
                 "gender": "male",
                 "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
+                "traitType": "Glasses"
+            }
+        ],
+        "traitId": 62
+    },
+    {
+        "traits": [
+            {
+                "gender": "female",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAElBMVEX////41GfowUpELoD13poIDCEigM6CAAAAAXRSTlMAQObYZgAAADpJREFUeF5joDMYBaEggCLCKigoKOISgCwSJGwsKGzsiqwqSFlYUFgYRYhVSUlVSSkAzfgAoPHDEgAAq34HbXbVRb8AAAAASUVORK5CYII=",
+                "traitName": "sleep-mask",
                 "traitType": "Glasses"
             }
         ],
@@ -1662,37 +1662,37 @@
         "traits": [
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             },
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             },
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             },
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             },
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             },
             {
                 "gender": "male",
-                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeAQMAAAD35eVZAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACVJREFUeF7twDEBAAAAwiD7p/ZdCFgAAAAAAAAAAAAAAAAAAABwPYYAAYuWb9AAAAAASUVORK5CYII=",
+                "pngImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAAtJREFUeF5jGKYAAADYAAGVQx66AAAAAElFTkSuQmCC",
                 "traitName": "none",
                 "traitType": "Hair"
             }
